@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block content %}
+<div class="page-heading"><div><span class="eyebrow">HISTORIAL DEL VEHÍCULO</span><h1>{{ vehiculo.matricula }}</h1><p>{{ vehiculo.marca }} {{ vehiculo.modelo }} · {{ vehiculo.cliente }} · {{ vehiculo.cliente.telefono }}</p></div><a class="button secondary" href="{% url 'taller:vehiculos' %}">Volver</a></div><section class="panel"><h2>Visitas al taller</h2>{% include 'taller/tabla_ordenes.html' %}</section>
+{% endblock %}

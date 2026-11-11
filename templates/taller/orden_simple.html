@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<section class="panel"><span class="eyebrow">RECEPCIÓN COMPLETADA</span><h1>{{ orden.referencia }}</h1><p>{{ orden.vehiculo }} · {{ orden.get_estado_display }}</p><p>{{ orden.km_entrada }} km</p><p class="preline">{{ orden.motivo }}</p><a href="{% url 'taller:inicio' %}">Volver al panel</a></section>{% endblock %}

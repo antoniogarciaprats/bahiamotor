@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<div class="page-heading"><div><span class="eyebrow">DIRECTORIO</span><h1>Clientes</h1><p>Una atención cercana empieza con una ficha clara.</p></div><a class="button" href="{% url 'taller:cliente_nuevo' %}">+ Nuevo cliente</a></div>
+<form class="search" method="get"><label for="q">Buscar por nombre o teléfono</label><div><input id="q" name="q" value="{{ q }}"><button class="button secondary">Buscar</button></div></form>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Ficha</th></tr></thead><tbody>{% for cliente in clientes %}<tr><td class="strong">{{ cliente.nombre }}</td><td>{{ cliente.telefono }}</td><td>{{ cliente.email|default:'Sin email' }}</td><td><a href="{% url 'taller:cliente_editar' cliente.pk %}">Editar →</a></td></tr>{% empty %}<tr><td colspan="4">No hay clientes con ese criterio.</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}

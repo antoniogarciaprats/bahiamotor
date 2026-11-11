@@ -1,0 +1,5 @@
+# Entorno usado para verificar este material: Python 3.12.14.
+Django==5.2.19
+asgiref==3.13.0
+sqlparse==0.6.1
+tzdata==2026.6

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<div class="page-heading"><div><span class="eyebrow">DIRECTORIO</span><h1>Vehículos e historial</h1><p>La información de cada vehículo, siempre localizada.</p></div><a class="button" href="{% url 'taller:vehiculo_nuevo' %}">+ Nuevo vehículo</a></div>
+<form class="search" method="get"><label for="q">Buscar matrícula o cliente</label><div><input id="q" name="q" value="{{ q }}"><button class="button secondary">Buscar</button></div></form>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>Matrícula</th><th>Vehículo</th><th>Cliente</th><th>Historial</th></tr></thead><tbody>{% for v in vehiculos %}<tr><td class="strong">{{ v.matricula }}</td><td>{{ v.marca }} {{ v.modelo }}</td><td>{{ v.cliente }}</td><td><a href="{% url 'taller:vehiculo_detalle' v.pk %}">Consultar →</a></td></tr>{% empty %}<tr><td colspan="4">No hay vehículos con ese criterio.</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}

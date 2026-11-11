@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="login-card"><span class="eyebrow">EL PUERTO DE SANTA MARÍA</span><h1>Bahía Motor</h1><p class="muted">Un espacio para cuidar cada detalle del taller.</p>
+  <form method="post">{% csrf_token %}{{ form.as_p }}{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}<button class="button" type="submit">Acceder al taller →</button></form>
+  <p class="small muted">Acceso para personal autorizado. Proyecto educativo con datos ficticios.</p>
+</section>
+{% endblock %}

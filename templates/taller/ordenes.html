@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<div class="page-heading"><div><span class="eyebrow">SEGUIMIENTO</span><h1>Órdenes de trabajo</h1><p>Consulta el avance de cada reparación.</p></div><a class="button" href="{% url 'taller:checkin' %}">+ Recibir vehículo</a></div>
+<form class="search" method="get"><label for="q">Matrícula o cliente</label><input id="q" name="q" value="{{ q }}"><label for="estado">Estado</label><div><select id="estado" name="estado"><option value="abiertas" {% if estado == 'abiertas' %}selected{% endif %}>Órdenes abiertas</option><option value="todas" {% if estado == 'todas' %}selected{% endif %}>Todas</option>{% for valor,texto in estados %}<option value="{{ valor }}" {% if estado == valor %}selected{% endif %}>{{ texto }}</option>{% endfor %}</select><button class="button secondary">Filtrar</button></div></form>
+<section class="panel">{% include 'taller/tabla_ordenes.html' %}</section>
+{% endblock %}

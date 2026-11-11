@@ -1,0 +1,35 @@
+{% load static %}<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Bahía Motor | Gestión del taller{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'taller/css/app.css' %}">
+</head>
+<body>
+  {% if user.is_authenticated %}
+  <aside class="sidebar">
+    <a class="brand" href="{% url 'taller:inicio' %}"><span class="brand-icon">BM</span><span>BAHÍA MOTOR<small>GESTIÓN DEL TALLER</small></span></a>
+    <p class="nav-label">ESPACIO DE TRABAJO</p>
+    <nav aria-label="Navegación principal">
+      <a href="{% url 'taller:inicio' %}" {% if request.resolver_match.url_name == 'inicio' %}aria-current="page"{% endif %}>01 <span>Panel de inicio</span></a>
+      <a href="{% url 'taller:reservas' %}" {% if request.resolver_match.url_name == 'reservas' %}aria-current="page"{% endif %}>02 <span>Reservas y citas</span></a>
+      <a href="{% url 'taller:checkin' %}" {% if request.resolver_match.url_name == 'checkin' %}aria-current="page"{% endif %}>03 <span>Recepción · check-in</span></a>
+      <a href="{% url 'taller:ordenes' %}" {% if request.resolver_match.url_name == 'ordenes' %}aria-current="page"{% endif %}>04 <span>Órdenes de trabajo</span></a>
+      <a href="{% url 'taller:checkout' %}" {% if request.resolver_match.url_name == 'checkout' %}aria-current="page"{% endif %}>05 <span>Entregas · check-out</span></a>
+    </nav>
+    <p class="nav-label">DIRECTORIO</p>
+    <nav aria-label="Directorio"><a href="{% url 'taller:clientes' %}">06 <span>Clientes</span></a><a href="{% url 'taller:vehiculos' %}">07 <span>Vehículos e historial</span></a></nav>
+    <div class="sidebar-bottom"><strong>El Puerto de Santa María</strong><small>Cádiz · Andalucía</small><span class="demo-label">Taller ficticio · proyecto de aula</span></div>
+  </aside>
+  {% endif %}
+  <div class="{% if user.is_authenticated %}workspace{% else %}login-workspace{% endif %}">
+    <header class="topbar"><span><i class="status-dot"></i> Atención y servicio</span>
+      {% if user.is_authenticated %}<div class="user-area"><span>{{ user.get_full_name|default:user.username }}</span><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="text-button" type="submit">Salir</button></form></div>{% endif %}
+    </header>
+    <main id="contenido">
+      {% if messages %}<div class="messages" aria-live="polite">{% for message in messages %}<p class="message {{ message.tags }}">{{ message }}</p>{% endfor %}</div>{% endif %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer>Bahía Motor <span>Organización, atención y seguimiento del vehículo.</span></footer>
+  </div>
+</body></html>
